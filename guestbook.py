@@ -11,7 +11,7 @@ app = Flask(__name__)
 with open("secret_key") as file:
     app.config["SECRET_KEY"] = file.read()
 
-@app.route("/")
+@app.route("/hello")
 def hello_world():
     return "hello, world!"
 
@@ -31,7 +31,7 @@ def guestbook():
         print(signature)
         signatures.insert(0, signature)
         with open("signatures.json", "w") as file:
-            json.dump(signatures, file)
+            json.dump(signatures, file, indent=4)
         return redirect("/guestbook")
     else: # either a GET request or invalid submission
         return render_template(

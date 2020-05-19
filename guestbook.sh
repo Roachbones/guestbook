@@ -1,3 +1,2 @@
 #!/bin/bash 
-export FLASK_APP=guestbook.py
-flask run
+gunicorn guestbook:app -b 127.0.0.1:4000
