@@ -32,7 +32,7 @@ form label, form input {
 function localize(timeElement) {
 	// replace ISO 8601 date with local date and time
 	date = new Date(timeElement.dateTime);
-	timeElement.innerHTML = date.toLocaleString();
+	timeElement.innerHTML = date.toLocaleString([], {hour: '2-digit', minute:'2-digit', year:'2-digit', month:'2-digit', day:'2-digit'});
 }
 function localizeAllTimes() {
 	times = document.getElementsByTagName("time");
