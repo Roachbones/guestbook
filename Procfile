@@ -1,1 +1,1 @@
-web: gunicorn guestbook.wsgi --log-file -
+web: gunicorn guestbook:app
