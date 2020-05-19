@@ -1,2 +1,2 @@
 #!/bin/bash 
-gunicorn guestbook:app -b 127.0.0.1:8080
+gunicorn guestbook:app -b 0.0.0.0:8080 --access-logfile access.log
