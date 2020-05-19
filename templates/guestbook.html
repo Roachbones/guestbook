@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="description" content="Vivian's website guestbook.">
+<meta name="author" content="Vivian Thomas">
+<meta property="og:image" content="https://rose.systems/cicada.png">
+<title>Guestbook</title>
+<link rel="stylesheet" type="text/css" href="https://rose.systems/style.css">
+<link rel="icon" href="https://rose.systems/favicon.ico" type="image/x-icon">
+<style>
+main {
+	max-width: 50em;
+}
+.errors {
+	border: solid red;
+}
+form {
+	display: table;
+
+}
+form div {
+	display: table-row;
+}
+form label, form input {
+	display: table-cell;
+	vertical-align:center;
+	margin: 2em;
+}
+</style>
+<script>
+function localize(timeElement) {
+	// replace ISO 8601 date with local date and time
+	date = new Date(timeElement.dateTime);
+	timeElement.innerHTML = date.toLocaleString();
+}
+function localizeAllTimes() {
+	times = document.getElementsByTagName("time");
+	for (i = 0; i < times.length; i++) {
+		localize(times[i]);
+	}
+}
+</script>
+</head>
+<body onload="localizeAllTimes();">
+<header>
+<h1>Guestbook</h1>
+</header>
+<main>
+{% if form.errors %}
+    <ul class="errors">
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+            {% for error in field_errors %}
+                <li>{{ form[field_name].label }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
+<form method="POST" action="/guestbook">
+    {{ form.csrf_token }}
+    <div>{{ form.name.label }} {{ form.name() }}</div>
+    <div>{{ form.message.label }} {{ form.message() }}</div>
+    <input type="submit" value="Submit">
+</form>
+<h2>Signatures</h2>
+<ul>
+{% for signature in signatures %}
+<li>
+<em>{{ signature["name"] }}</em>
+at <time datetime="{{ signature["time"] }}">{{ signature["time"] }}</time>:
+<em>{{ signature["message"] }}</em>
+</li>
+{% endfor %}
+</ul>
+</main>
+</body>
+</html>
