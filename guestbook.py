@@ -1,5 +1,3 @@
-# add logging? or maybe that's in apache?
-
 import json
 import datetime
 from flask import Flask, request, render_template, redirect
@@ -11,9 +9,9 @@ app = Flask(__name__)
 with open("secret_key") as file:
     app.config["SECRET_KEY"] = file.read()
 
-@app.route("/hello")
-def hello_world():
-    return "hello, world!"
+@app.route("/")
+def root():
+    return redirect("https://rose.systems", code=303)
 
 @app.route("/guestbook", methods=["GET","POST"])
 def guestbook():
@@ -59,7 +57,6 @@ class GuestbookForm(FlaskForm):
             "rows": 8
         }
     )
-    print()
 
 
 
