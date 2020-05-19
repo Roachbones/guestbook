@@ -15,17 +15,20 @@ main {
 .errors {
 	border: solid red;
 }
-form {
+#formGrid {
 	display: table;
-
+	margin: auto;
 }
-form div {
+#formGrid > div {
 	display: table-row;
 }
-form label, form input {
+#formGrid > div > div {
 	display: table-cell;
-	vertical-align:center;
-	margin: 2em;
+	vertical-align: middle;
+	padding: 1em;
+}
+.formLabel {
+	text-align: right;
 }
 </style>
 <script>
@@ -57,10 +60,13 @@ function localizeAllTimes() {
     </ul>
 {% endif %}
 <form method="POST" action="/guestbook">
-    {{ form.csrf_token }}
-    <div>{{ form.name.label }} {{ form.name() }}</div>
-    <div>{{ form.message.label }} {{ form.message() }}</div>
-    <input type="submit" value="Submit">
+	{{ form.csrf_token }}
+	<div id="formGrid">
+		<div><div class="formLabel">{{ form.name.label }}</div><div class="formInput">{{ form.name() }}</div></div>
+		<div><div class="formLabel">{{ form.message.label }}</div><div class="formInput">{{ form.message() }}</div></div>
+	</div>
+	<br><!-- "noo you can't just use inline elements to structure your webpage" "haha line break element go br" -->
+	<div style="text-align:center;"><input type="submit" value="Submit"></div>
 </form>
 <h2>Signatures</h2>
 <ul>
