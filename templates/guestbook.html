@@ -11,6 +11,7 @@
 <style>
 main {
 	max-width: 50em;
+	word-wrap: break-word;
 }
 .errors {
 	border: solid red;
@@ -66,7 +67,7 @@ function localizeAllTimes() {
 		<div><div class="formLabel">{{ form.message.label }}</div><div class="formInput">{{ form.message() }}</div></div>
 	</div>
 	<br><!-- "noo you can't just use inline elements to structure your webpage" "haha line break element go br" -->
-	<div style="text-align:center;"><input type="submit" value="Submit"></div>
+	<div style="text-align:center;"><input type="submit" value="Sign"></div>
 </form>
 <h2>Signatures</h2>
 <ul>
