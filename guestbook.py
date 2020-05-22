@@ -54,7 +54,7 @@ class GuestbookForm(FlaskForm):
         render_kw = {
             "maxlength": 1000,
             "cols": 40,
-            "rows": 8
+            "rows": 6
         }
     )
 
