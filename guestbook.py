@@ -9,11 +9,11 @@ app = Flask(__name__)
 with open("secret_key") as file:
     app.config["SECRET_KEY"] = file.read()
 
-@app.route("/")
+@app.route("/home")
 def root():
     return redirect("https://rose.systems", code=303)
 
-@app.route("/guestbook", methods=["GET","POST"])
+@app.route("/", methods=["GET","POST"])
 def guestbook():
     form = GuestbookForm()
     with open("signatures.json") as file:
