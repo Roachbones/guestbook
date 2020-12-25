@@ -60,11 +60,12 @@ function localizeAllTimes() {
         {% endfor %}
     </ul>
 {% endif %}
-<form method="POST" action="/guestbook">
+<form method="POST" action="/">
 	{{ form.csrf_token }}
 	<div id="formGrid">
 		<div><div class="formLabel">{{ form.name.label }}</div><div class="formInput">{{ form.name() }}</div></div>
 		<div><div class="formLabel">{{ form.message.label }}</div><div class="formInput">{{ form.message() }}</div></div>
+		<div><div class="formLabel">sentience check:<br>please type "cicada"</div><div class="formInput">{{ form.sentience() }}</div></div>
 	</div>
 	<br><!-- "noo you can't just use inline elements to structure your webpage" "haha line break element go br" -->
 	<div style="text-align:center;"><input type="submit" value="Sign"></div>

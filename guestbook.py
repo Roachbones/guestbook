@@ -30,7 +30,7 @@ def guestbook():
         signatures.insert(0, signature)
         with open("signatures.json", "w") as file:
             json.dump(signatures, file, indent=4)
-        return redirect("/guestbook")
+        return redirect("/")
     else: # either a GET request or invalid submission
         return render_template(
             "guestbook.html",
@@ -56,6 +56,17 @@ class GuestbookForm(FlaskForm):
             "cols": 40,
             "rows": 6
         }
+    )
+    sentience = StringField(
+        validators=[
+            validators.InputRequired(),
+            validators.Length(max=64),
+            validators.AnyOf(
+                ("cicada", "Cicada", "CICADA"),
+                message="failed sentience check. type CICADA in the third box"
+            )
+        ],
+        render_kw = {"maxlength": 64}
     )
 
 
